@@ -1,3 +1,4 @@
+import 'package:campus_app/core.dart';
 import 'package:campus_app/feature/profile/model/profile.dart';
 import 'package:campus_app/feature/profile/model/update_profile.dart';
 import 'package:dio/dio.dart';
@@ -21,7 +22,7 @@ class ProfileService {
     String token = prefs.getString('token')!;
 
     try {
-      String url = 'http://192.168.20.249:3000/api/user';
+      String url = '${BaseURL.api}/user';
 
       final response = await _dio.get(
         url,
@@ -48,7 +49,7 @@ class ProfileService {
       String token = prefs.getString('token')!;
 
       final response = await _dio.patch(
-        'http://192.168.20.249:3000/api/user/photo',
+        '${BaseURL.api}/user/photo',
         data: formData,
         options: Options(
           headers: {
@@ -76,7 +77,7 @@ class ProfileService {
       String token = prefs.getString('token')!;
       print(formData.toJson());
       final response = await _dio.patch(
-        'http://192.168.20.249:3000/api/user',
+        '${BaseURL.api}/user',
         data: formData.toJson(),
         options: Options(
           headers: {

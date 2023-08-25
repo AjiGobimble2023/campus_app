@@ -4,6 +4,7 @@ import 'package:campus_app/core.dart';
 import 'package:campus_app/feature/profile/bloc/profile_bloc.dart';
 import 'package:campus_app/feature/profile/model/update_profile.dart';
 import 'package:flutter/material.dart';
+import 'package:campus_app/feature/profile/view/profile_page.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
@@ -61,7 +62,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
     }
 
     return Scaffold(
-        appBar: AppBar(title: const Text("Saya")),
+        appBar: AppBar(title: const Text("Profile")),
         body: BlocBuilder<ProfileBloc, ProfileState>(builder: (context, state) {
           if (state is ProfileSuccess) {
             final userdata = state.data;
@@ -239,19 +240,21 @@ class _EditProfilePageState extends State<EditProfilePage> {
                             label: 'Simpan',
                             onPressed: () async {
                               if (_formKey.currentState!.validate()) {
-                                UpdateProfileModel profileModel = UpdateProfileModel(
-                                    fullName: _nameController.text,
-                                    birthDate: _birthdayController.text,
-                                    address: _addresController.text,
-                                    phoneNumber: _noTelpController.text,
-                                    campusName: _noTelpController.text,
-                                    city: _cityController.text,
-                                    image: _image) ;
+                                UpdateProfileModel profileModel =
+                                    UpdateProfileModel(
+                                        fullName: _nameController.text,
+                                        birthDate: _birthdayController.text,
+                                        address: _addresController.text,
+                                        phoneNumber: _noTelpController.text,
+                                        campusName: _noTelpController.text,
+                                        city: _cityController.text,
+                                        image: _image);
                                 context.read<ProfileBloc>().add(UpdateProfile(
                                     updatedProfile: profileModel));
                                 if (context.mounted) {
                                   "Yey! Profil kamu berhasil diubah"
                                       .succeedBar(context);
+                                  context.push(UserProfilePage());
                                 }
                               }
                             },

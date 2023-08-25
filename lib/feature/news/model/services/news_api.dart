@@ -1,3 +1,4 @@
+import 'package:campus_app/core.dart';
 import 'package:campus_app/feature/news/model/news.dart';
 import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -15,16 +16,13 @@ class InformationService {
   }
   Future<List<InformationModel>> getInformation(String search, int page) async {
     try {
-      String url =
-          'http://192.168.20.249:3000/api/news?search=$search&page=$page';
+      String url = '${BaseURL.api}/news?search=$search&page=$page';
       final response = await _dio.get(url);
       if (response.statusCode == 200) {
         final List data = response.data['data'];
         int page = response.data['totalPages'];
         SharedPreferences prefs = await SharedPreferences.getInstance();
-        prefs.setInt(
-          'pages',page
-        );
+        prefs.setInt('pages', page);
         List<InformationModel> informationModels =
             data.map((json) => InformationModel.fromJson(json)).toList();
         return informationModels;

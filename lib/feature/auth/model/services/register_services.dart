@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:campus_app/core.dart';
 
 import '../models/register_model.dart';
 
@@ -8,7 +9,7 @@ class RegisterService {
   Future<bool> register(RegisterModel user) async {
     try {
       final respone = await dio.post(
-        'http://192.168.20.249:3000/api/register',
+        '${BaseURL.api}/register',
         data: user.toJson(),
         options: Options(
           headers: {'Content-Type': 'application/json'},

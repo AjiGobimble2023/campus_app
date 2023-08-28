@@ -1,10 +1,10 @@
 import 'dart:io';
 
 import 'package:campus_app/core.dart';
+import 'package:campus_app/feature/home/view/home_page.dart';
 import 'package:campus_app/feature/profile/bloc/profile_bloc.dart';
 import 'package:campus_app/feature/profile/model/update_profile.dart';
 import 'package:flutter/material.dart';
-import 'package:campus_app/feature/profile/view/profile_page.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
@@ -246,7 +246,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                         birthDate: _birthdayController.text,
                                         address: _addresController.text,
                                         phoneNumber: _noTelpController.text,
-                                        campusName: _noTelpController.text,
+                                        campusName: _nameCampusController.text,
                                         city: _cityController.text,
                                         image: _image);
                                 context.read<ProfileBloc>().add(UpdateProfile(
@@ -254,7 +254,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                 if (context.mounted) {
                                   "Yey! Profil kamu berhasil diubah"
                                       .succeedBar(context);
-                                  context.push(UserProfilePage());
+                                  context.pushReplacement(const MyHomePage());
                                 }
                               }
                             },

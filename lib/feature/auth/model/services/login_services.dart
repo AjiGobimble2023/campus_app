@@ -7,8 +7,7 @@ class LoginService {
   final baseUrl = BaseURL.api;
   Future<Map<String, dynamic>> login(LoginModel model) async {
     try {
-      final response =
-          await dio.post("${BaseURL.api}/login", data: model.toJson());
+      final response = await dio.post('$baseUrl/login', data: model.toJson());
       if (response.statusCode == 200) {
         return response.data;
       } else {

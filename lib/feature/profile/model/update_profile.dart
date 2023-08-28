@@ -27,7 +27,6 @@ class UpdateProfileModel {
       'phoneNumber': phoneNumber,
       'campus_name': campusName,
       'city': city,
-      'image': image
     };
   }
 }

@@ -1,4 +1,3 @@
-
 import 'package:campus_app/feature/news/model/news.dart';
 import 'package:campus_app/feature/news/view/pages/detail_news_page.dart';
 import 'package:flutter/material.dart';
@@ -8,10 +7,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import '../../../../core.dart';
 
 class ListInformation extends StatelessWidget {
-  const ListInformation({
-    super.key,
-    required this.informationModel
-  });
+  const ListInformation({super.key, required this.informationModel});
   final InformationModel informationModel;
 
   @override
@@ -48,7 +44,6 @@ class ListInformation extends StatelessWidget {
             ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.end,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
                   DateFormat.yMMMMd().format(DateTime.parse(
@@ -60,6 +55,7 @@ class ListInformation extends StatelessWidget {
                     color: AppColors.grey500,
                   ),
                 ),
+                16.0.height,
                 Container(
                   alignment: Alignment.centerLeft,
                   width: context.fullWidth - 160.0,

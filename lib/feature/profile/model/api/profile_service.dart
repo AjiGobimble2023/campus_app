@@ -43,50 +43,18 @@ class ProfileService {
     }
   }
 
-  Future<ProfileModel?> updatePhoto(FormData formData) async {
-    try {
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      String token = prefs.getString('token')!;
-
-      final response = await _dio.patch(
-        '${BaseURL.api}/user/photo',
-        data: formData,
-        options: Options(
-          headers: {
-            'Authorization': 'Bearer $token',
-            'Content-Type': 'multipart/form-data'
-          },
-        ),
-      );
-      if (response.statusCode == 200) {
-        final data = response.data;
-        ProfileModel profileModel = ProfileModel.fromJson(data);
-        return profileModel;
-      } else {}
-    } catch (error) {
-      if (kDebugMode) {
-        print('Error updating photo: $error');
-      }
-    }
-    return null;
-  }
-
   Future<ProfileModel?> updateUser(UpdateProfileModel formData) async {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       String token = prefs.getString('token')!;
       print(formData.toJson());
-      final response = await _dio.patch(
+      final response = await _dio.put(
         '${BaseURL.api}/user',
         data: formData.toJson(),
         options: Options(
-          headers: {
-            'Authorization': 'Bearer $token',
-            'Content-Type': 'multipart/form-data'
-          },
+          headers: {'Authorization': 'Bearer $token'},
         ),
       );
-      print(response.data);
       if (response.statusCode == 200) {
         final data = response.data;
         ProfileModel profileModel = ProfileModel.fromJson(data);
@@ -96,7 +64,7 @@ class ProfileService {
       }
     } catch (error) {
       if (kDebugMode) {
-        print('Error updating photo: $error');
+        print('Error updating: $error');
       }
     }
     return null;

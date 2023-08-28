@@ -32,7 +32,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
           IconButton(
             icon: const Icon(Icons.settings),
             onPressed: () {
-              context.pushReplacement(EditProfilePage());
+              context.push(const EditProfilePage());
             },
           ),
         ],

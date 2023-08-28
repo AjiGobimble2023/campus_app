@@ -12,10 +12,7 @@ class GetProfile extends ProfileEvent {
 }
 
 // ignore: must_be_immutable
-class UpdatePhotoProfile extends ProfileEvent {
-  FormData image;
-  UpdatePhotoProfile({required this.image});
-}
+
 class UpdateProfile extends ProfileEvent {
   final UpdateProfileModel updatedProfile;
 

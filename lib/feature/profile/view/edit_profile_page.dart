@@ -64,6 +64,9 @@ class _EditProfilePageState extends State<EditProfilePage> {
     return Scaffold(
         appBar: AppBar(title: const Text("Profile")),
         body: BlocBuilder<ProfileBloc, ProfileState>(builder: (context, state) {
+          if (state is ProfileLoading) {
+            return const EcoLoading();
+          }
           if (state is ProfileSuccess) {
             final userdata = state.data;
             _nameController.text = userdata.fullName;
